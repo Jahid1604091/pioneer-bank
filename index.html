@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Pioneer bank</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center p-5 text-primary fw-bold text-uppercase">
+        Welcome to Pioneer bank
+      </h1>
+      <form id="form">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Email address</label
+          >
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+          />
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+          <label class="form-check-label" for="exampleCheck1"
+            >Check me out</label
+          >
+        </div>
+        <button id="login" type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      <div id="transaction" style="display: block">
+        <h2>transaction area</h2>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="shadow p-4 text-center text-uppercase bg-primary">
+              <h3>deposit</h3>
+              <strong id="depositShow">00</strong>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="shadow p-4 text-center text-uppercase bg-secondary">
+              <h3>widthraw</h3>
+              <strong id="widthrowShow">00</strong>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="shadow p-4 text-center text-uppercase bg-warning">
+              <h3>balance</h3>
+              <strong id="balanceShow">00</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="my-3 mb-3">
+              <label for="" class="text-uppercase fw-bold">Deposit</label>
+              <input id="depositInput" type="text" class="form-control" />
+              <button id="deposit" class="btn btn-primary p-2 my-2">
+                Deposit
+              </button>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="my-3 mb-3">
+              <label for="" class="text-uppercase fw-bold">Widthraw</label>
+              <input id="widthrowInput" type="text" class="form-control" />
+              <button id="widthrow" class="btn btn-primary p-2 my-2">
+                Widthraw
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const loginBtn = document.getElementById("login");
+      loginBtn.addEventListener("click", (e) => {
+        const form = document.getElementById("form");
+        const transaction = document.getElementById("transaction");
+        form.style.display = "none";
+        transaction.style.display = "block";
+      });
+
+      let totalDeposit = 0;
+      let totalWidthrow = 0;
+      let totalBalance = 0;
+
+      let widthrowBtn = document.getElementById("widthrow");
+      let depositBtn = document.getElementById("deposit");
+
+      depositBtn.addEventListener("click", (e) => {
+        let depositInput = document.getElementById("depositInput");
+        let depositShow = document.getElementById("depositShow");
+        totalDeposit =
+          parseFloat(depositShow.innerText) + parseFloat(depositInput.value);
+
+        depositShow.innerHTML = totalDeposit;
+        document.getElementById("balanceShow").innerHTML =
+          totalDeposit + totalBalance;
+      });
+
+      widthrowBtn.addEventListener("click", (e) => {
+        let widthrowInput = document.getElementById("widthrowInput");
+        let widthrowShow = document.getElementById("widthrowShow");
+       totalBalance = parseFloat(document.getElementById('balanceShow').textContent)
+       totalWidthrow += parseFloat( widthrowInput.value)
+        widthrowShow.innerHTML = widthrowInput.value
+        document.getElementById("balanceShow").innerHTML =
+          totalBalance - parseFloat(widthrowInput.value)
+      });
+    </script>
+  </body>
+</html>
